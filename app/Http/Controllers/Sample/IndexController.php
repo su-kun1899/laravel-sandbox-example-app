@@ -10,4 +10,10 @@ class IndexController extends Controller
     {
         return 'Hello';
     }
+
+    public function showId($id): string
+    {
+        return "Hello $id";
+    }
+
 }

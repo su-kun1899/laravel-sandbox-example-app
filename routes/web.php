@@ -19,3 +19,4 @@ Route::get('/', function () {
 });
 
 Route::get('/sample', [IndexController::class, 'show']);
+Route::get('/sample/{id}', [IndexController::class, 'showId']);
