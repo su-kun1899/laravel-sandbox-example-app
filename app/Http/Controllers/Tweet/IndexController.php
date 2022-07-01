@@ -19,7 +19,7 @@ class IndexController extends Controller
      */
     public function __invoke(Request $request): View|Factory|Application
     {
-        $tweets = Tweet::all();
+        $tweets = Tweet::query()->orderByDesc('created_at')->get();
 
         return view('tweet.index')
             ->with('tweets', $tweets);
