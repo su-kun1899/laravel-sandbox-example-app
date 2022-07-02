@@ -23,6 +23,14 @@ sail stop
 sail artisan migrate
 ```
 
+## Setup IDE Helper
+
+```sh
+sail php artisan ide-helper:generate
+sail php artisan ide-helper:models
+sail php artisan ide-helper:meta
+```
+
 <p align="center"><a href="https://laravel.com" target="_blank"><img src="https://raw.githubusercontent.com/laravel/art/master/logo-lockup/5%20SVG/2%20CMYK/1%20Full%20Color/laravel-logolockup-cmyk-red.svg" width="400"></a></p>
 
 <p align="center">
