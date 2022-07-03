@@ -4,8 +4,8 @@ namespace App\Http\Controllers\Tweet\Update;
 
 use App\Http\Controllers\Controller;
 use App\Models\Tweet;
+use Illuminate\Contracts\View\View;
 use Illuminate\Http\Request;
-use Illuminate\Http\Response;
 
 class IndexController extends Controller
 {
@@ -13,12 +13,13 @@ class IndexController extends Controller
      * Handle the incoming request.
      *
      * @param Request $request
-     * @return Response
+     * @return View
      */
-    public function __invoke(Request $request): Response
+    public function __invoke(Request $request): View
     {
         $tweetId = $request->route('tweetId');
         $tweet = Tweet::where('id', $tweetId)->firstOrFail();
-        dd($tweet);
+
+        return view('tweet.update')->with('tweet', $tweet);
     }
 }
