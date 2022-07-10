@@ -3,7 +3,7 @@
 namespace App\Http\Controllers\Tweet;
 
 use App\Http\Controllers\Controller;
-use App\Models\Tweet;
+use App\Service\TweetService;
 use Illuminate\Contracts\Foundation\Application;
 use Illuminate\Contracts\View\Factory;
 use Illuminate\Contracts\View\View;
@@ -19,7 +19,8 @@ class IndexController extends Controller
      */
     public function __invoke(Request $request): View|Factory|Application
     {
-        $tweets = Tweet::query()->orderByDesc('created_at')->get();
+        $tweetService = new TweetService();
+        $tweets = $tweetService->getTweets();
 
         return view('tweet.index')
             ->with('tweets', $tweets);
