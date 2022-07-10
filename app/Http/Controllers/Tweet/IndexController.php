@@ -15,11 +15,11 @@ class IndexController extends Controller
      * Handle the incoming request.
      *
      * @param Request $request
+     * @param TweetService $tweetService
      * @return Application|Factory|View
      */
-    public function __invoke(Request $request): View|Factory|Application
+    public function __invoke(Request $request, TweetService $tweetService): View|Factory|Application
     {
-        $tweetService = new TweetService();
         $tweets = $tweetService->getTweets();
 
         return view('tweet.index')
