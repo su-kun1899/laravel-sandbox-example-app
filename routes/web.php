@@ -26,7 +26,7 @@ Route::get('/sample', [IndexController::class, 'show']);
 Route::get('/sample/{id}', [IndexController::class, 'showId']);
 
 Route::get('/tweet', \App\Http\Controllers\Tweet\IndexController::class)->name('tweet.index');
-Route::post('/tweet/create', CreateController::class)->name('tweet.create');
+Route::post('/tweet/create', CreateController::class)->middleware('auth')->name('tweet.create');
 Route::get('/tweet/update/{tweetId}', \App\Http\Controllers\Tweet\Update\IndexController::class)
     ->name('tweet.update.index');
 Route::put('/tweet/update/{tweetId}', PutController::class)->name('tweet.update.put');

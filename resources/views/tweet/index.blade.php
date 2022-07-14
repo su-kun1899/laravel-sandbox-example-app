@@ -9,22 +9,24 @@
 </head>
 <body>
 <h1>つぶやきアプリ</h1>
-<div>
-    <p>投稿フォーム</p>
-    @if (session('feedback.success'))
-        <p style="color: green">{{ session('feedback.success') }}</p>
-    @endif
-    <form action="{{ route('tweet.create') }}" method="post">
-        @csrf
-        <label for="tweet-content">つぶやき</label>
-        <span>140文字まで</span>
-        <textarea id="tweet-content" name="tweet" placeholder="つぶやきを入力"></textarea>
-        @error('tweet')
-        <p style="color: red;">{{ $message }}</p>
-        @enderror
-        <button type="submit">投稿</button>
-    </form>
-</div>
+@auth
+    <div>
+        <p>投稿フォーム</p>
+        @if (session('feedback.success'))
+            <p style="color: green">{{ session('feedback.success') }}</p>
+        @endif
+        <form action="{{ route('tweet.create') }}" method="post">
+            @csrf
+            <label for="tweet-content">つぶやき</label>
+            <span>140文字まで</span>
+            <textarea id="tweet-content" name="tweet" placeholder="つぶやきを入力"></textarea>
+            @error('tweet')
+            <p style="color: red;">{{ $message }}</p>
+            @enderror
+            <button type="submit">投稿</button>
+        </form>
+    </div>
+@endauth
 <div>
     @foreach($tweets as $tweet)
         <details>
