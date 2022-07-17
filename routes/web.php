@@ -26,14 +26,17 @@ Route::get('/sample', [IndexController::class, 'show']);
 Route::get('/sample/{id}', [IndexController::class, 'showId']);
 
 Route::get('/tweet', \App\Http\Controllers\Tweet\IndexController::class)->name('tweet.index');
-Route::post('/tweet/create', CreateController::class)->middleware('auth')->name('tweet.create');
-Route::get('/tweet/update/{tweetId}', \App\Http\Controllers\Tweet\Update\IndexController::class)
-    ->name('tweet.update.index');
-Route::put('/tweet/update/{tweetId}', PutController::class)->name('tweet.update.put');
-Route::delete('/tweet/delete/{tweetId}', DeleteController::class)->name('tweet.delete');
+
+Route::middleware('auth')->group(function () {
+    Route::post('/tweet/create', CreateController::class)->name('tweet.create');
+    Route::get('/tweet/update/{tweetId}', \App\Http\Controllers\Tweet\Update\IndexController::class)
+        ->name('tweet.update.index');
+    Route::put('/tweet/update/{tweetId}', PutController::class)->name('tweet.update.put');
+    Route::delete('/tweet/delete/{tweetId}', DeleteController::class)->name('tweet.delete');
+});
 
 Route::get('/dashboard', function () {
     return view('dashboard');
 })->middleware(['auth'])->name('dashboard');
 
-require __DIR__.'/auth.php';
+require __DIR__ . '/auth.php';
