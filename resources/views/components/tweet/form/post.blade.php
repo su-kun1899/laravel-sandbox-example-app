@@ -1,6 +1,6 @@
 @auth
     <div class="p-4">
-        <form action="{{ route('tweet.create) }}" method="post">
+        <form action="{{ route('tweet.create') }}" method="post">
             @csrf
             <div class="mt-1">
                 <textarea name="tweet" rows="3"
