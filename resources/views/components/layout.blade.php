@@ -8,6 +8,7 @@
     <title>{{ $title ?? 'つぶやきアプリ' }}</title>
     <link href="{{ mix('/css/app.css') }}" rel="stylesheet"/>
     <script src="{{ mix('/js/app.js') }}"></script>
+    @stack('css')
 </head>
 <body class="bg-gray-50">
 {{ $slot }}

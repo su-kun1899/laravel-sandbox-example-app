@@ -23,6 +23,11 @@ sail stop
 sail artisan migrate
 ```
 
+```shell
+# reflect css
+sail npm run development
+```
+
 ## Setup IDE Helper
 
 ```sh
