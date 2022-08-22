@@ -33,6 +33,6 @@ class NewUserIntroduction extends Mailable
      */
     public function build(): static
     {
-        return $this->view('email.new_user_introduction');
+        return $this->markdown('email.new_user_introduction');
     }
 }
