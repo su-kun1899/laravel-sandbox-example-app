@@ -2,8 +2,8 @@
 
 namespace Database\Factories;
 
+use Carbon\Carbon;
 use Illuminate\Database\Eloquent\Factories\Factory;
-use JetBrains\PhpStorm\ArrayShape;
 
 /**
  * @extends Factory
@@ -15,12 +15,12 @@ class TweetFactory extends Factory
      *
      * @return array<string, mixed>
      */
-    #[ArrayShape(['user_id' => "int", 'content' => "string"])]
     public function definition(): array
     {
         return [
             'user_id' => 1, // つぶやきを投稿したユーザーの ID をデフォルトで 1 とする
             'content' => $this->faker->realText(100),
+            'created_at' => Carbon::now()->addDays(-1),
         ];
     }
 }
