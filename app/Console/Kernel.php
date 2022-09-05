@@ -19,7 +19,7 @@ class Kernel extends ConsoleKernel
 //         $schedule->command('sample-command')->hourly();
 //         $schedule->command('sample-command')->hourlyAt(8);
 //         $schedule->command('sample-command')->daily();
-//         $schedule->command('sample-command')->dailyAt('13:00');
+         $schedule->command('mail:send-daily-tweet-count-mail')->dailyAt('11:00');
 //         $schedule->command('sample-command')->cron('15 3 * * *');
     }
 
