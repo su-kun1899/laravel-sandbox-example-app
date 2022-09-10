@@ -28,6 +28,14 @@ sail artisan migrate
 sail npm run development
 ```
 
+```repl
+sail tinker
+```
+
+```clean database
+sail artisan migrate:fresh --seed
+```
+
 ## Setup IDE Helper
 
 ```sh
