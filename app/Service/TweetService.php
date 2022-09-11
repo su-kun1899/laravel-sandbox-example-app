@@ -13,7 +13,7 @@ class TweetService
      */
     public function getTweets(): Collection
     {
-        return Tweet::orderByDesc('created_at')->get();
+        return Tweet::with('images')->orderByDesc('created_at')->get();
     }
 
     /**
