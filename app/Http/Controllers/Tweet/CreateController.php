@@ -4,8 +4,9 @@ namespace App\Http\Controllers\Tweet;
 
 use App\Http\Controllers\Controller;
 use App\Http\Requests\Tweet\CreateRequest;
-use App\Models\Tweet;
+use App\Service\TweetService;
 use Illuminate\Http\RedirectResponse;
+use Throwable;
 
 class CreateController extends Controller
 {
@@ -13,14 +14,17 @@ class CreateController extends Controller
      * Handle the incoming request.
      *
      * @param CreateRequest $request
+     * @param TweetService $tweetService
      * @return RedirectResponse
+     * @throws Throwable
      */
-    public function __invoke(CreateRequest $request): RedirectResponse
+    public function __invoke(CreateRequest $request, TweetService $tweetService): RedirectResponse
     {
-        $tweet = new Tweet();
-        $tweet->user_id = $request->userId();
-        $tweet->content = $request->tweet();
-        $tweet->save();
+        $tweetService->saveTweet(
+            $request->userId(),
+            $request->tweet(),
+            $request->images()
+        );
 
         return redirect()->route('tweet.index');
     }

@@ -2,9 +2,13 @@
 
 namespace App\Service;
 
+use App\Models\Image;
 use App\Models\Tweet;
 use Carbon\Carbon;
 use Illuminate\Support\Collection;
+use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Storage;
+use Throwable;
 
 class TweetService
 {
@@ -49,5 +53,28 @@ class TweetService
             '<',
             Carbon::today()->toDateTimeString()
         )->count();
+    }
+
+    /**
+     * @param int $userId
+     * @param string $content
+     * @param array $images
+     * @throws Throwable
+     */
+    public function saveTweet(int $userId, string $content, array $images): void
+    {
+        DB::transaction(function () use ($userId, $content, $images) {
+            $tweet = new Tweet();
+            $tweet->user_id = $userId;
+            $tweet->content = $content;
+            $tweet->save();
+            foreach ($images as $image) {
+                Storage::putFile('public/images', $image);
+                $imageModel = new Image();
+                $imageModel->name = $image->hashName();
+                $imageModel->save();
+                $tweet->images()->attach($imageModel->id);
+            }
+        });
     }
 }
