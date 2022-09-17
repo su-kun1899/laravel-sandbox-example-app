@@ -3,7 +3,6 @@
 namespace App\Http\Requests\Tweet;
 
 use Illuminate\Foundation\Http\FormRequest;
-use JetBrains\PhpStorm\ArrayShape;
 
 class CreateRequest extends FormRequest
 {
@@ -22,11 +21,12 @@ class CreateRequest extends FormRequest
      *
      * @return array<string, mixed>
      */
-    #[ArrayShape(['tweet' => "string"])]
     public function rules(): array
     {
         return [
-            'tweet' => 'required|max:140'
+            'tweet' => 'required|max:140',
+            'images' => 'array|max:4',
+            'images.*' => 'required|image|mimes:jpeg,png,jpg,gif|max:2048',
         ];
     }
 
@@ -44,5 +44,13 @@ class CreateRequest extends FormRequest
     public function userId(): int
     {
         return $this->user()->id;
+    }
+
+    /**
+     * @return array
+     */
+    public function images(): array
+    {
+        return $this->file('images', []);
     }
 }
