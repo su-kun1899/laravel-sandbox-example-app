@@ -29,3 +29,21 @@
         </button>
     </template>
 </div>
+
+<script>
+    function inputFormHandler() {
+        return {
+            fields: [],
+            addField() {
+                const i = this.fields.length;
+                this.fields.push({
+                    file: '',
+                    id: `input-images-${i}`
+                });
+            },
+            removeField(index) {
+                this.fields.splice(index, 1);
+            }
+        }
+    }
+</script>
