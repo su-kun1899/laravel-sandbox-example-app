@@ -28,12 +28,19 @@ sail artisan migrate
 sail npm run development
 ```
 
-```repl
+```shell
+# repl
 sail tinker
 ```
 
-```clean database
+```shell
+# clean database
 sail artisan migrate:fresh --seed
+```
+
+```shell
+# test
+sail test tests/Unit/Services/TweetServiceTest.php
 ```
 
 ## Setup IDE Helper
