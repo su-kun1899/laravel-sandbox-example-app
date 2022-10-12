@@ -32,7 +32,7 @@ class AppServiceProvider extends ServiceProvider
                 ]
             )
         );
-        if (!$this->app->environment('production')) {
+        if ($this->app->environment('production')) {
             $this->app->bind(ImageManagerInterface::class, CloudinaryImageManager::class);
         } else {
             $this->app->bind(ImageManagerInterface::class, LocalImageManager::class);
