@@ -11,7 +11,7 @@
                         <a @click="$dispatch('img-modal', { imgModalSrc: '{{ asset('storage/images/' . $image->name) }}' })"
                            class="cursor-pointer">
                             <img alt="{{ $image->name }}" class="object-fit w-full"
-                                 src="{{ asset('storage/images/' . $image->name) }}">
+                                 src="{{ image_url($image->name) }}">
                         </a>
                     </div>
                 </div>
